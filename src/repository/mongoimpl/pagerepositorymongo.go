@@ -26,7 +26,7 @@ func (p PageRepositoryMongo) GetSeoForPage(ctx context.Context, pageId int) (*mo
 	if err != nil {
 		return nil, fmt.Errorf("error happened when using db: %w", err)
 	}
-	defer seosCursor.Close(context.TODO())
+	defer seosCursor.Close(ctx)
 
 	seo := &model.SEO{}
 	if seosCursor.Next(ctx) {
@@ -52,7 +52,7 @@ func (p PageRepositoryMongo) GetProductsForPage(ctx context.Context, pageId int)
 	}
 
 	var products []model.Product
-	if err = productsCursor.All(context.TODO(), &products); err != nil {
+	if err = productsCursor.All(ctx, &products); err != nil {
 		return nil, fmt.Errorf("error happened when decoding results: %w", err)
 	}
 	return products, nil
