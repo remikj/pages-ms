@@ -49,7 +49,7 @@ func (pc *PageControllerImpl) HandlePageGet(writer http.ResponseWriter, request 
 	}
 	fmt.Printf("Found page with id: %v Page: %v\n", pageId, string(marshal))
 
-	_, err = writer.Write(marshal)
+	err = writeResponse(writer, err, marshal)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -67,6 +67,12 @@ func getPageIdFromRequest(request *http.Request) (int, error) {
 
 func handleNotFoundServerError(writer http.ResponseWriter) {
 	writeStatusAndText(writer, http.StatusNotFound, "result not found")
+}
+
+func writeResponse(writer http.ResponseWriter, err error, marshal []byte) error {
+	writer.Header().Set("Content-Type", "application/json")
+	_, err = writer.Write(marshal)
+	return err
 }
 
 func handleInternalServerError(writer http.ResponseWriter) {
