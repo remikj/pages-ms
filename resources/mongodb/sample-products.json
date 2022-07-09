@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "page_id": 1,
+    "name": "name1",
+    "description": "description2",
+    "price": 2.50
+  },
+  {
+    "id": 2,
+    "page_id": 1,
+    "name": "name2",
+    "description": "description2",
+    "price": 20.99
+  },
+  {
+    "id": 3,
+    "page_id": 2,
+    "name": "name3",
+    "description": "description3",
+    "price": 27.39
+  },
+  {
+    "id": 4,
+    "page_id": 3,
+    "name": "name4",
+    "description": "description4",
+    "price": 1.01
+  },
+  {
+    "id": 5,
+    "page_id": 100,
+    "name": "name5",
+    "description": "description5 - product without parent",
+    "price": 1223.11
+  }
+]

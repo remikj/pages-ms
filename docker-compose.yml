@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    container_name: pages-ms-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    volumes:
+      - ./resources/mongodb/:/sample-data/
+
+  pages-ms:
+    image: pages-ms:latest
+    restart: always
+    container_name: pages-ms
+    environment:
+      SERVICE_PORT: 8080
+      MONGO_USER: user
+      MONGO_PASS: pass
+      MONGO_URI: "mongodb://mongo:27017"
+      MONGO_DATABASE: test
+    ports:
+      - "8080:8080"
